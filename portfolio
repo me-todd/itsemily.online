@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emily Todd | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0; background-color:#09090f; }
+a{color:#ff6b9d;text-decoration:underline;text-underline-offset:3px}
+a:hover{color:#ff8fb5}
+a:focus-visible{outline:3px solid #ff6b9d;outline-offset:3px}
+</style>
+</head>
+<body>
+<div style="font-family:'Poppins',system-ui,sans-serif;color:#e8e8f0;background:#09090f;line-height:1.55;font-size:17px">
+
+<!-- NAV + HERO -->
+<div style="background:#13131f;color:#e8e8f0;border-bottom:1px solid #1e1e30">
+<div style="max-width:1160px;margin:0 auto;padding:28px 32px 0 32px;box-sizing:border-box">
+<div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center">
+<div>
+<div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;letter-spacing:0.01em">Emily Todd</div>
+<a href="https://linkedin.com/in/metodd" style="color:#ff6b9d;font-size:15px;padding:10px 0;display:inline-block">linkedin.com/in/metodd</a>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 28px;font-size:15px">
+<a href="#work" style="color:#e8e8f0;padding:10px 0;display:inline-block">Selected work</a>
+<a href="#community" style="color:#e8e8f0;padding:10px 0;display:inline-block">Community</a>
+<a href="#experience" style="color:#e8e8f0;padding:10px 0;display:inline-block">Experience</a>
+<a href="mailto:emilyk1852@gmail.com" style="color:#e8e8f0;padding:10px 0;display:inline-block">Contact</a>
+</div>
+</div>
+</div>
+<div style="max-width:1160px;margin:0 auto;padding:88px 32px 96px 32px;box-sizing:border-box">
+<div style="font-size:14px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#ff6b9d">PRODUCT MANAGEMENT&nbsp;<span style="letter-spacing: 1.96px">·&nbsp;</span>governance · STRATEGY&nbsp;<span style="letter-spacing: 1.96px">·&nbsp;</span>Analytics</div>
+<h1 style="font-family:'Poppins',sans-serif;font-weight:700;font-size:60px;line-height:1.08;margin:20px 0 0 0;max-width:880px;letter-spacing:-0.02em">I make it easier for people to do their jobs and companies to achieve their goals.</h1>
+<p style="font-size:20px;max-width:760px;margin:28px 0 0 0;color:#c4c4d8">25+ years in regulated environments (OCC, FDA), high tech, and consulting. I lead change and enablement so tools get used and create training programs, communities of practice, reporting standards, and usage data to measure adoption.</p>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:40px"><a href="mailto:emilyk1852@gmail.com" style="background:#7c6bff;color:#09090f;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:6px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">Get in touch</a>
+<a href="#work" style="color:#e8e8f0;border:1px solid #ff6b9d;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:6px;min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center">See selected work</a>
+</div>
+</div>
+</div>
+
+<!-- NUMBERS -->
+<div style="max-width:1160px;margin:0 auto;padding:0 32px;box-sizing:border-box">
+<div style="display:flex;flex-wrap:wrap;gap:0;background:#13131f;border:1px solid #1e1e30;border-radius:8px;margin-top:-40px;position:relative">
+<div style="flex:1 1 240px;padding:28px 28px;box-sizing:border-box">
+<div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:38px;color:#7c6bff">$500K</div>
+<div style="color:#a3a3c0;font-size:15px">Year 1 savings from a Tableau license renewal negotiation</div>
+</div>
+<div style="flex:1 1 240px;padding:28px 28px;box-sizing:border-box">
+<div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:38px;color:#7c6bff">~45 days</div>
+<div style="color:#a3a3c0;font-size:15px">To implement a highly customized cloud ERP</div>
+</div>
+<div style="flex:1 1 240px;padding:28px 28px;box-sizing:border-box">
+<div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:38px;color:#7c6bff">2,000+</div>
+<div style="color:#a3a3c0;font-size:15px">Examiners used reports and systems I administered.</div>
+</div>
+<div style="flex:1 1 240px;padding:28px 28px;box-sizing:border-box">
+<div style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 38px; color: #7c6bff; width: 265px">25% increase</div>
+<div style="color:#a3a3c0;font-size:15px">Enrollments in self-service training&nbsp;</div>
+</div>
+</div>
+</div>
+
+<!-- SELECTED WORK -->
+<div id="work" style="max-width:1160px;margin:0 auto;padding:104px 32px 24px 32px;box-sizing:border-box">
+<h2 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:36px;margin:0;letter-spacing:-0.01em">Selected work</h2>
+<p style="color:#a3a3c0;max-width:680px;margin:12px 0 0 0">Five projects that show how I move tools and data from "installed" to "used."</p>
+
+<div style="display:flex;flex-direction:column;gap:24px;margin-top:48px">
+
+<!-- Case 1 -->
+<div style="background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:36px;display:flex;flex-wrap:wrap;gap:32px;box-sizing:border-box">
+<div style="flex:1 1 260px;min-width:0">
+<div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7c6bff">Enterprise applications</div>
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:24px;line-height:1.25;margin:10px 0 0 0">Cloud ERP implementation in about 45 days</h3>
+<div style="margin-top:12px;color:#a3a3c0;font-size:15px">Product Owner &amp; ERP Administrator<br>RedZone Technologies · 2026 to present</div>
+</div>
+<div style="flex:2 1 420px;min-width:0">
+<div style="font-weight:700">What I did</div>
+<p style="margin:6px 0 0 0">Led implementation of a highly customized cloud-based ERP as a new employee, with no documented processes for either the company or the ERP. I also manage internal and customer-facing products, calculate value creation across the product portfolio, and lead AI use cases aimed at improving margins and customer support.</p>
+<div style="font-weight:700;margin-top:16px">Result</div>
+<p style="margin:6px 0 0 0">A working ERP in roughly 45 days, and a clearer view of the value each major product creates.</p>
+</div>
+</div>
+
+<!-- Case 2 -->
+<div style="background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:36px;display:flex;flex-wrap:wrap;gap:32px;box-sizing:border-box">
+<div style="flex:1 1 260px;min-width:0">
+<div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7c6bff">Vendor &amp; budget management</div>
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:24px;line-height:1.25;margin:10px 0 0 0">Tableau license renewal using what-if scenarios</h3>
+<div style="margin-top:12px;color:#a3a3c0;font-size:15px">Principal Enablement Consultant &amp; Product Owner<br>Red Hat · 2021 to 2023</div>
+</div>
+<div style="flex:2 1 420px;min-width:0">
+<div style="font-weight:700">What I did</div>
+<p style="margin:6px 0 0 0">Helped negotiate and led aspects of a renewed Tableau licensing agreement, using what-if scenarios to compare options.</p>
+<div style="font-weight:700;margin-top:16px">Result</div>
+<p style="margin:6px 0 0 0">$500K in Year 1 savings, and positioning for $2.2M in market-value reductions.</p>
+</div>
+</div>
+
+<!-- Case 3 -->
+<div style="background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:36px;display:flex;flex-wrap:wrap;gap:32px;box-sizing:border-box">
+<div style="flex:1 1 260px;min-width:0">
+<div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7c6bff">Adoption &amp; lifecycle</div>
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:24px;line-height:1.25;margin:10px 0 0 0">The FARM Methodology and a Center of Excellence</h3>
+<div style="margin-top:12px;color:#a3a3c0;font-size:15px">Red Hat · 2021 to 2023</div>
+</div>
+<div style="flex:2 1 420px;min-width:0">
+<div style="font-weight:700">What I did</div>
+<p style="margin:6px 0 0 0">Created the FARM Methodology to assess the business value of dashboards, and used it with stakeholders to sunset products with no measurable value. Managed the product backlog, defined success metrics, and used usage data to drive lifecycle decisions. Developed a self-service training program, helped build the Tableau and Data Visualization Center of Excellence, and led an accessibility hackathon and learning sessions.</p>
+<div style="font-weight:700;margin-top:16px">Result</div>
+<p style="margin:6px 0 0 0">A stronger data culture, and decisions about which products to keep based on measured value rather than habit.</p>
+</div>
+</div>
+
+<!-- Case 4 -->
+<div style="background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:36px;display:flex;flex-wrap:wrap;gap:32px;box-sizing:border-box">
+<div style="flex:1 1 260px;min-width:0">
+<div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7c6bff">Data governance &amp; accessibility</div>
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:24px;line-height:1.25;margin:10px 0 0 0">Reporting standards and accessible charts at FDA CDRH</h3>
+<div style="margin-top:12px;color:#a3a3c0;font-size:15px">Data Visualization &amp; Accessibility Consultant<br>Midnight Sun Technologies (client: FDA CDRH) · 2024 to 2025</div>
+</div>
+<div style="flex:2 1 420px;min-width:0">
+<div style="font-weight:700">What I did</div>
+<p style="margin:6px 0 0 0">Led enablement for a business intelligence tool migration and facilitated a center-wide reporting standards working group. Defined reporting requirements and roadmap priorities with program leadership, and developed training and guidance to improve adoption. Spearheaded a strategy for accessible reporting, with prototype accessible charts in Tableau, Power BI, and Pyramid Analytics.</p>
+<div style="font-weight:700;margin-top:16px">Result</div>
+<p style="margin:6px 0 0 0">Better information sharing between the transformation team and the business, and enterprise reporting used to monitor program performance and compliance outcomes.</p>
+</div>
+</div>
+
+<!-- Case 5 -->
+<div style="background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:36px;display:flex;flex-wrap:wrap;gap:32px;box-sizing:border-box">
+<div style="flex:1 1 260px;min-width:0">
+<div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#7c6bff">Enterprise reporting</div>
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:24px;line-height:1.25;margin:10px 0 0 0">Dashboards for risk-based supervision at the OCC</h3>
+<div style="margin-top:12px;color:#a3a3c0;font-size:15px">Office of the Comptroller of the Currency · 1999 to 2018</div>
+</div>
+<div style="flex:2 1 420px;min-width:0">
+<div style="font-weight:700">What I did</div>
+<p style="margin:6px 0 0 0">Designed, launched, and governed enterprise dashboards that guided resource allocation and risk-based supervision. Developed one of the first reporting strategies for a line of business with 2,000+ geographically dispersed employees. Directly managed two applications with a total annual budget of $2.5M, and co-managed a mission-critical data retrieval system covering all U.S. national banks. Served as practical lead for the Content Working Group of the Federal Financial Institutions Examination Council.</p>
+<div style="font-weight:700;margin-top:16px">Result</div>
+<p style="margin:6px 0 0 0">Dashboards used by senior leaders who managed 2,000+ examiners, and a report relied on by thousands of examiners, bankers, and consumers.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- COMMUNITY -->
+<div id="community" style="max-width:1160px;margin:0 auto;padding:80px 32px 24px 32px;box-sizing:border-box">
+<h2 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:36px;margin:0;letter-spacing:-0.01em">Community and teaching</h2>
+<p style="color:#a3a3c0;max-width:680px;margin:12px 0 0 0">Tools stick when people have a community around them. I build those communities and teach the skills.</p>
+<div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:40px">
+<div style="flex:1 1 320px;min-width:0;background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:28px;box-sizing:border-box">
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;margin:0">Tableau Fringe Festival</h3>
+<p style="margin:10px 0 0 0;color:#a3a3c0">Founded this free online data visualization conference (2015 to 2021). It is featured in Eva Murray's book <i>Empowered by Data</i>.</p>
+</div>
+<div style="flex:1 1 320px;min-width:0;background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:28px;box-sizing:border-box">
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;margin:0">The Vizzies</h3>
+<p style="margin:10px 0 0 0;color:#a3a3c0">Co-founded a community awards show that continues today, with me as an advisor.</p>
+</div>
+<div style="flex:1 1 320px;min-width:0;background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:28px;box-sizing:border-box">
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;margin:0">Speaking and leadership</h3>
+<p style="margin:10px 0 0 0;color:#a3a3c0">Tableau Ambassador (2015 to 2021) and Tableau Conference speaker on accessibility and universal design. Advisory Board Member, Data Leadership Collaborative. Co-founder, DC Data+Women meetups.</p>
+</div>
+<div style="flex:1 1 320px;min-width:0;background:#13131f;border:1px solid #1e1e30;border-radius:8px;padding:28px;box-sizing:border-box">
+<h3 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;margin:0">Curriculum and training</h3>
+<p style="margin:10px 0 0 0;color:#a3a3c0">Built a university-level data analytics curriculum, a capstone for professionals new to analytics, and accessibility training for public-sector data visualization teams and an online learning platform. Taught Tableau courses virtually in the US and Canada.</p>
+</div>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience" style="max-width:1160px;margin:0 auto;padding:80px 32px 24px 32px;box-sizing:border-box">
+<h2 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:36px;margin:0;letter-spacing:-0.01em">Experience</h2>
+<div style="margin-top:32px;border-top:1px solid #1e1e30">
+<div style="display:flex;flex-wrap:wrap;gap:8px 32px;padding:20px 0;border-bottom:1px solid #1e1e30">
+<div style="flex:1 1 200px;color:#a3a3c0">2026 to present</div>
+<div style="flex:3 1 400px"><b>Product Owner &amp; ERP Administrator</b>, RedZone Technologies</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 32px;padding:20px 0;border-bottom:1px solid #1e1e30">
+<div style="flex:1 1 200px;color:#a3a3c0">2024 to 2025</div>
+<div style="flex:3 1 400px"><b>Data Visualization &amp; Accessibility Consultant</b>, Midnight Sun Technologies (client: FDA CDRH)</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 32px;padding:20px 0;border-bottom:1px solid #1e1e30">
+<div style="flex:1 1 200px;color:#a3a3c0">2018 to 2026</div>
+<div style="flex:3 1 400px"><b>Analytics Consultant</b>, Freelance</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 32px;padding:20px 0;border-bottom:1px solid #1e1e30">
+<div style="flex:1 1 200px;color:#a3a3c0">2021 to 2023</div>
+<div style="flex:3 1 400px"><b>Principal Enablement Consultant &amp; Product Owner</b>, Red Hat</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px 32px;padding:20px 0;border-bottom:1px solid #1e1e30">
+<div style="flex:1 1 200px;color:#a3a3c0">1999 to 2018</div>
+<div style="flex:3 1 400px"><b>Office of the Comptroller of the Currency</b><br><span style="color:#a3a3c0;font-size:15px">Field Examiner, then analyst and system administrator roles, then Team Leader of Reporting and Analysis, then Deputy Comptroller Analyst for Large Bank Supervision. Led a team of up to nine.</span></div>
+</div>
+</div>
+</div>
+
+<!-- SKILLS + EDUCATION -->
+
+
+<!-- CONTACT -->
+<div style="max-width:1160px;margin:0 auto;padding:80px 32px 24px 32px;box-sizing:border-box">
+<div style="display:flex;flex-wrap:wrap;gap:48px">
+<div style="flex:2 1 460px;min-width:0">
+<h2 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:28px;margin:0">Skills and tools</h2>
+<div style="margin-top:20px"><b>Practice</b><br><span style="color:#a3a3c0">Technology adoption and change management, workforce enablement and training, data governance, reporting standards, business intelligence and analytics, data literacy, KPIs and success metrics, vendor and budget management, digital accessibility and inclusion</span></div>
+<div style="margin-top:16px"><b>Analytics and BI</b><br><span style="color:#a3a3c0">Tableau, Power BI, Pyramid Analytics, SAS Visual Analytics, SQL and Python (foundational)</span></div>
+<div style="margin-top:16px"><b>Collaboration</b><br><span style="color:#a3a3c0">Microsoft Teams, Slack, Miro, Trello, GitHub, Zoom, Webex</span></div>
+<div style="margin-top:16px"><b>AI tools</b><br><span style="color:#a3a3c0">Claude (project work, context repositories, workflow acceleration), Lovable (prototyping), CoPilot</span></div>
+</div>
+<div style="flex:1 1 300px;min-width:0">
+<h2 style="font-family:'Poppins',sans-serif;font-weight:600;font-size:28px;margin:0">Education</h2>
+<div style="margin-top:20px"><b>MBA, Business &amp; Technology</b><br><span style="color:#a3a3c0">Quantic School of Business &amp; Technology</span></div>
+<div style="margin-top:16px"><b>B.S. Business Administration</b><br><span style="color:#a3a3c0">Management &amp; Finance, Salisbury University</span></div>
+<div style="margin-top:32px;font-family:'Poppins',sans-serif;font-weight:600;font-size:20px">Memberships</div>
+<div style="margin-top:8px;color:#a3a3c0">International Association of Accessibility Professionals<br>American Marketing Association, Member</div>
+<div style="margin-top:24px;font-family:'Poppins',sans-serif;font-weight:600;font-size:20px">Growing into healthcare</div>
+<div style="margin-top:8px;color:#a3a3c0">Introduction to the Healthcare System, Patient Navigator Training Collaborative; Introduction to Chronic Disease, Patient Navigation and Community Health Worker Training</div>
+</div>
+</div>
+</div>
+
+</div>
+</body>
+</html>
