@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<!-- =========================================================================
+  WHAT: the template every blog post uses. Jekyll fills in the title, date,
+  tags, image and the post text from the top of each file in the _posts folder.
+  WHY: one template for all posts means a new post is just a new text file,
+  and a design change here updates every post at once.
+========================================================================== -->
+<main class="post-page">
+  <a class="back-link" href="{{ '/blog.html' | relative_url }}">← Back to all posts</a>
+
+  {% if page.image %}
+    <img class="post-banner" src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}">
+  {% endif %}
+
+  <div class="post-meta">
+    <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+    {% if page.author %}<span class="post-byline">· {{ page.author }}</span>{% endif %}
+    <!-- Loop: one pill per tag, however many tags the post has -->
+    {% for tag in page.tags %}<span class="post-tag">{{ tag }}</span>{% endfor %}
+  </div>
+
+  <h1>{{ page.title }}</h1>
+  {% if page.subtitle %}<p class="post-subtitle">{{ page.subtitle }}</p>{% endif %}
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+</main>

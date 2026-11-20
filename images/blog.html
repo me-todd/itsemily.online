@@ -1,0 +1,119 @@
+---
+layout: default
+title: Blog
+---
+<!-- ============ PAGE HEADER ============ -->
+<header class="page-header">
+  <span class="page-badge">Latest Writing</span>
+  <h1><span class="grad">The Blog</span></h1>
+  <p>A little work, a little life, and a lot of espresso.</p>
+
+  <div class="search-wrap">
+    <label for="search-input" style="position:absolute;width:1px;height:1px;overflow:hidden;">Search posts</label>
+    <input
+      type="search"
+      id="search-input"
+      placeholder="Search posts…"
+      autocomplete="off"
+      oninput="renderPosts(this.value)"
+    >
+    <div class="result-count" id="result-count"></div>
+  </div>
+</header>
+
+<!-- ============ POST LIST ============ -->
+<main class="blog-list">
+  <div id="post-list"></div>
+  <p class="no-results" id="no-results">No posts match your search.</p>
+
+  <!-- Shown only if JavaScript is off, so the posts are still reachable -->
+  <noscript>
+    <ul>
+      {% for post in site.posts %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </noscript>
+</main>
+
+<script>
+  /* ================================================================
+     HOW THIS PAGE GETS ITS POSTS (plain-language version)
+     ----------------------------------------------------------------
+     You no longer edit a posts.json file. Each post is its own file
+     in the _posts folder. When GitHub builds your site, the loop just
+     below goes through EVERY post file automatically and writes its
+     details into the "posts" list. The search box then filters that list.
+
+     WHY: a mistake in one post file can't break the others, and adding
+     a post never means touching this page.
+     ================================================================ */
+  const posts = [
+  {% for post in site.posts %}
+    {
+      url:     {{ post.url | relative_url | jsonify }},
+      title:   {{ post.title | jsonify }},
+      date:    {{ post.date | date: "%B %-d, %Y" | jsonify }},
+      tags:    {{ post.tags | jsonify }},
+      excerpt: {{ post.excerpt | strip_html | strip_newlines | jsonify }},
+      image:   {% if post.image %}{{ post.image | relative_url | jsonify }}{% else %}null{% endif %},
+      text:    {{ post.content | strip_html | strip_newlines | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ];
+
+  const postList = document.getElementById('post-list');
+  const noResults = document.getElementById('no-results');
+  const resultCount = document.getElementById('result-count');
+
+  // WHAT: turns risky characters (&, <, >) into safe text.
+  // WHY: so a title or excerpt can never be mistaken for HTML code.
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // WHAT: wraps the part of the text that matches the search in <mark>.
+  // WHY: gives matches their pink highlight so readers see why a post matched.
+  function highlight(text, term) {
+    const escaped = escapeHtml(text);
+    if (!term) return escaped;
+    const safeTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return escaped.replace(new RegExp(safeTerm, 'gi'), (match) => `<mark>${match}</mark>`);
+  }
+
+  // WHAT: rebuilds the visible list of post cards.
+  // WHY: one function reused on first load and on every keystroke.
+  function renderPosts(query) {
+    const term = (query || '').trim().toLowerCase();
+
+    // Keep posts where the term appears in the title, excerpt, text or tags.
+    const matches = posts.filter((post) => {
+      const haystack = `${post.title} ${post.excerpt} ${post.text} ${post.tags.join(' ')}`.toLowerCase();
+      return haystack.includes(term);
+    });
+
+    // One card template reused for every post.
+    postList.innerHTML = matches.map((post) => `
+      <article class="post-card">
+        ${post.image ? `<a href="${post.url}"><img class="post-thumb" src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}"></a>` : ''}
+        <div class="post-meta">
+          ${escapeHtml(post.date)}
+          ${post.tags.map((t) => `<span class="post-tag">${escapeHtml(t)}</span>`).join('')}
+        </div>
+        <h2><a href="${post.url}">${highlight(post.title, term)}</a></h2>
+        <p>${highlight(post.excerpt, term)}</p>
+        <a class="read-more" href="${post.url}">Read more →</a>
+      </article>
+    `).join('');
+
+    noResults.style.display = matches.length === 0 ? 'block' : 'none';
+    resultCount.textContent = term
+      ? `${matches.length} post${matches.length === 1 ? '' : 's'} found`
+      : '';
+  }
+
+  renderPosts(''); // '' = no search yet, so show every post
+</script>

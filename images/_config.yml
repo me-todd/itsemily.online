@@ -1,0 +1,33 @@
+# =========================================================================
+# SITE SETTINGS (Jekyll reads this file once, every time GitHub rebuilds)
+# -------------------------------------------------------------------------
+# WHAT: general facts about your site, used by the layouts and plugins.
+# WHY: keeping them in one place means you change your site's name or
+# address here once instead of hunting through every page.
+# =========================================================================
+title: Emily Todd
+description: A little work, a little life, and a lot of espresso.
+url: "https://itsemily.online"
+
+markdown: kramdown
+
+# Every post gets a clean link like /blog/community-best-advantage/
+# (the last part comes from the file name, minus the date).
+permalink: /blog/:title/
+
+# Free GitHub Pages plugins:
+#  - jekyll-seo-tag : adds the hidden tags that make LinkedIn/Slack show a
+#                     proper title, description and image when you share a post
+#  - jekyll-feed    : builds an RSS feed at /feed.xml
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Defaults for every post, so you don't have to repeat them in each file.
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: Emily Todd

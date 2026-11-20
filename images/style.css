@@ -1,0 +1,313 @@
+/* =========================================================================
+   ONE STYLESHEET FOR THE WHOLE BLOG
+   -------------------------------------------------------------------------
+   WHAT: all the colors, fonts and spacing, carried over from your old
+   blog.html and post.html.
+   WHY: before, the same design lived in two places and had to be changed
+   twice. Now there's one copy. Blog-list rules start with ".blog-list" /
+   ".post-card" and single-post rules start with ".post-page", so the two
+   page types can't accidentally affect each other.
+   ========================================================================= */
+:root {
+  --bg: #09090f;
+  --surface: #13131f;
+  --border: #1e1e30;
+  --accent: #7c6bff;
+  --accent2: #ff6b9d;
+  --text: #e8e8f0;
+  --muted: #6b6b8a;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ============ NAV ============ */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(9,9,15,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--accent); }
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+nav a:hover, nav a.active { color: var(--text); }
+
+/* ============ FOOTER ============ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 2.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* =========================================================================
+   BLOG LIST PAGE (blog.html)
+   ========================================================================= */
+.page-header {
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+}
+.page-header::before, .page-header::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+.page-header::before { width: 500px; height: 500px; background: var(--accent); top: -150px; left: -100px; }
+.page-header::after  { width: 350px; height: 350px; background: var(--accent2); top: -80px; right: -80px; }
+
+.page-badge {
+  display: inline-block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+.page-header h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  letter-spacing: -1.5px;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.page-header h1 .grad {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.page-header p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.search-wrap { max-width: 420px; margin: 2rem auto 0; position: relative; z-index: 1; }
+.search-wrap input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.8rem 1.1rem;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-wrap input::placeholder { color: var(--muted); }
+.search-wrap input:focus { border-color: var(--accent); }
+.result-count { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; min-height: 1.1em; }
+
+main.blog-list { max-width: 760px; margin: 0 auto; padding: 1rem 2rem 5rem; }
+
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.post-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+.post-thumb {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1.2rem;
+  display: block;
+  background: var(--border);
+}
+.post-card .post-meta {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+}
+.post-card .post-tag { margin-left: 0.6rem; }
+.post-card h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.7rem;
+}
+.post-card h2 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.post-card h2 a:hover { color: var(--accent); }
+.post-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+.post-card mark { background: rgba(255,107,157,0.25); color: var(--text); border-radius: 3px; padding: 0 0.1rem; }
+
+.read-more { font-size: 0.85rem; font-weight: 500; color: var(--accent); text-decoration: none; }
+.read-more:hover { color: var(--accent2); }
+
+.no-results { display: none; text-align: center; color: var(--muted); font-size: 0.95rem; padding: 3rem 0; }
+
+/* The little purple tag pills, shared by the list and the post page */
+.post-tag {
+  background: rgba(124,107,255,0.12);
+  color: var(--accent2);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* =========================================================================
+   SINGLE POST PAGE (the post layout)
+   ========================================================================= */
+main.post-page { max-width: 700px; margin: 0 auto; padding: 3rem 2rem 5rem; line-height: 1.6; }
+
+.back-link {
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+
+.post-page .post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+.post-byline { text-transform: none; letter-spacing: 0; color: var(--muted); font-weight: 400; }
+
+/* Post title painted with the purple-to-pink gradient */
+.post-page h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  letter-spacing: -1px;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.post-subtitle { font-size: 1.05rem; color: var(--muted); margin-bottom: 1.3rem; }
+
+.post-banner {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  background: var(--border);
+}
+
+/* ---------- Post body: what Markdown turns into ---------- */
+.post-body p { color: var(--text); font-size: 1.02rem; margin-bottom: 1.2rem; }
+
+.post-body h2 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--text);
+  margin: 2.2rem 0 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+.post-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+.post-body blockquote {
+  margin: 1.6rem 0;
+  padding: 0.2rem 0 0.2rem 1.2rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  font-style: italic;
+}
+.post-body blockquote p { color: var(--muted); }
+
+.post-body ol, .post-body ul { margin: 0 0 1.2rem 1.4rem; }
+.post-body li { margin-bottom: 0.6rem; font-size: 1.02rem; }
+
+.post-body a { color: var(--accent); }
+.post-body a:hover { color: var(--accent2); }
+
+.post-body figure { margin: 1.6rem 0; }
+.post-body figure img, .post-body > p > img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: block;
+}
+.post-body figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); text-align: center; }
+
+.post-body pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  overflow-x: auto;
+  margin: 1.6rem 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+.post-body pre code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  color: var(--text);
+  white-space: pre;
+}
+.post-body code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; }
