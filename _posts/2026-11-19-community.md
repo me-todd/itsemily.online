@@ -1,0 +1,33 @@
+---
+title: "Community: The best advantage a company has"
+subtitle: "Why investing in community pays off"
+date: 2026-11-19
+tags: [community]
+excerpt: "Why investing in community is one of the smartest (and most overlooked) moves a SaaS company can make."
+---
+I started in the Tableau community in 2011 and at that time, the community felt like it was just starting. Fast forward to June 2019, when Salesforce and Tableau management discussed the acquisition. What was notable to me was that they discussed the Tableau community as if it was like a balance sheet item, like an intangible asset that had so much value it was part of the calculation in the acquisition. I think I went around all day talking about how valuable the Tableau community was.
+
+So for the (SaaS) companies out there, take some time to invest in community and see a kickass ROI. According to a Gainsight article, some of the benefits of investing in community include:
+
+{% include figure.html src="/images/BANs.png" caption="Benefits of investing in community (source: Gainsight)" %}
+
+Those numbers are a good reason to invest, but here's another reason people don't talk about:
+
+## Tips and Tutorials
+
+If there's no free training available on a tool, how are customers supposed to learn it in a way that's scalable for both of you? Companies default to help documentation, but we know that help documentation can be a bit iffy because it highly depends on the individual reading it.
+
+If I was advising a company on enabling customers (in a scalable way) here's what I would recommend:
+
+1. Start getting customers together for user group meetings.
+2. Note who's excited, speaks up, etc. These are your (informal) leaders.
+3. Encourage your customers to blog/podcast/record a video on what they're doing & how they did it. ← Customer use cases & blogs by the customer are AMAZING resources. They also fill a gap when your company resources don't meet the need.
+4. Highlight what people are sharing. Did someone make a cool release notes tool? Another person figure out how to do a reporting hack like including a date updated or converting nulls to zeroes (where it makes sense). Share it out on your channels. Not only does it promote your customer, you're helping promote yourself too. I think of it like the tree of reach. When you share your customers' content, you're making others in your network aware of it. When your customer shares your share, you get exposed to their network (twice, because they probably shared it initially & then re-share to show that your company found it valuable enough to share).
+
+{% include figure.html src="/images/tree_branches_roots.png" caption="The tree of reach: sharing your customers' content grows your network" %}
+
+Bonus: Use Discord, Mighty Networks, LinkedIn Groups, Slack, or whatever tool to have customers connect with each other about different topics.
+
+At the end of the day, investing in your community is a very wise decision with a positive ROI.
+
+{% include figure.html src="/images/ROIcommunity.png" caption="Investing in community pays off" %}

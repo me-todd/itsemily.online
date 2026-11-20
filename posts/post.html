@@ -1,0 +1,25 @@
+---
+layout: null
+sitemap: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <title>Redirecting…</title>
+  <!-- WHAT: keeps your OLD post links working.
+       Old links looked like /posts/post.html?id=community-best-advantage.
+       This page reads the id and sends the visitor to the new link,
+       /blog/community-best-advantage/.
+       WHY: anyone who saved or shared an old link still lands on the post. -->
+  <script>
+    var id = new URLSearchParams(window.location.search).get('id');
+    window.location.replace(id ? '/blog/' + encodeURIComponent(id) + '/' : '/blog.html');
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url=/blog.html"></noscript>
+</head>
+<body>
+  <p>Redirecting… <a href="/blog.html">Go to the blog</a></p>
+</body>
+</html>
