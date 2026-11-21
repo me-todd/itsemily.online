@@ -311,3 +311,8 @@ main.post-page { max-width: 700px; margin: 0 auto; padding: 3rem 2rem 5rem; line
   white-space: pre;
 }
 .post-body code { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9em; }
+
+/* Embedded content (YouTube players, tweets, maps) made with the builder's
+   "HTML embed" block: keeps it inside the page with rounded corners. */
+.post-body .embed-wrap { margin: 1.6rem 0; max-width: 100%; overflow: hidden; border-radius: 12px; }
+.post-body .embed-wrap iframe, .post-body .embed-wrap video { max-width: 100%; border: 1px solid var(--border); border-radius: 12px; }

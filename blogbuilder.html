@@ -308,7 +308,7 @@
   <div class="topbar">
     <div>
       <h1>Blog Post Builder</h1>
-      <p>Fill in the fields, watch the preview update, then download a ready-to-upload HTML file.</p>
+      <p>Fill in the fields, watch the preview update, then download a Markdown (.md) file for your blog's _posts folder.</p>
     </div>
   </div>
 
@@ -327,11 +327,27 @@
         </div>
         <div class="field">
           <label for="author">Author</label>
-          <input type="text" id="author" placeholder="Emily">
+          <input type="text" id="author" placeholder="Leave blank to use Emily Todd">
         </div>
         <div class="field">
           <label for="date">Date</label>
           <input type="date" id="date">
+          <span class="hint">A date in the future will not appear on the blog until that day.</span>
+        </div>
+        <div class="field">
+          <label for="slug">Short link name</label>
+          <input type="text" id="slug" placeholder="e.g. community (optional)">
+          <span class="hint">Becomes the post's link: itsemily.online/blog/<b>community</b>/. Leave blank to use the title.</span>
+        </div>
+        <div class="field">
+          <label for="excerpt">Excerpt</label>
+          <textarea id="excerpt" placeholder="The 1-2 sentence preview shown on the blog list (optional)"></textarea>
+          <span class="hint">Leave blank and the start of your first paragraph is used.</span>
+        </div>
+        <div class="field">
+          <label for="banner">Banner image file name</label>
+          <input type="text" id="banner" placeholder="e.g. vibes.jpg (optional)">
+          <span class="hint">A picture from your images folder, shown at the top of the post and on the blog list.</span>
         </div>
       </section>
 
@@ -352,10 +368,14 @@
           <button type="button" data-type="embed">+ HTML embed</button>
           <button type="button" data-type="image">+ Image</button>
         </div>
-        <span class="hint">Blocks render top to bottom, in the order you add them. Use the arrows on a block to reorder it.</span>
+        <span class="hint">Blocks render top to bottom, in the order you add them. Use the arrows on a block to reorder it. In paragraphs you can use Markdown, like **bold**, *italic* and [a link](https://example.com). The preview shows it as typed, but your site will format it.</span>
       </section>
 
-      <button class="primary-btn" id="downloadBtn">Download HTML</button>
+      <button class="primary-btn" id="downloadBtn">Download Markdown (.md)</button>
+      <div class="field" style="margin-top:1rem;">
+        <span class="hint" id="publishInfo"></span>
+        <span class="hint">To publish: upload any new images to the <b>images</b> folder on GitHub first, then add the downloaded file to the <b>_posts</b> folder (Add file, then Upload files) and commit.</span>
+      </div>
     </div>
 
     <div class="preview-pane">
@@ -373,8 +393,9 @@
   // rebuild two things from that state:
   //   1. The editable blocks on the left (so you can reorder/edit them)
   //   2. The live preview on the right (so you can see the finished post)
-  // When you click "Download HTML", we take that same state and turn it
-  // into one finished, self-contained HTML file you can upload to the blog.
+  // When you click "Download Markdown", we take that same state and turn it
+  // into one finished Markdown (.md) file. You drop that file into the
+  // _posts folder on GitHub and your blog builds the page for you.
   //
   // WHY it's built this way: keeping one "source of truth" (state) and
   // re-drawing the screen from it, instead of editing the page by hand in
@@ -478,7 +499,7 @@
   // Adds a new, empty block of the given type to the end of the post,
   // then redraws the editor and the preview so it shows up immediately.
   function addBlock(type) {
-    const block = { id: ++blockCounter, type, text: '', language: '', imgSrc: '', imgAlt: '', imgCaption: '' };
+    const block = { id: ++blockCounter, type, text: '', language: '', imgSrc: '', imgFile: '', imgAlt: '', imgCaption: '' };
     state.blocks.push(block);
     renderBlocks();
     updatePreview();
@@ -554,19 +575,23 @@
       const body = el('div', { class: 'block-body' });
 
       if (block.type === 'image') {
-        // An image block needs: a file picker, a small preview thumbnail
-        // once chosen, an "alt text" field (read aloud by screen readers,
-        // shown if the image fails to load), and an optional caption.
-        const fileLabel = el('label', { class: 'file-btn' }, [textNode('Choose image')]);
+        // An image block needs: a file picker (so you can SEE the picture in
+        // the preview), the picture's file name, "alt text" (read aloud by
+        // screen readers) and an optional caption.
+        // WHAT CHANGED: the old builder packed the whole picture into the
+        // HTML file as text. Your blog now keeps pictures in the "images"
+        // folder on GitHub, so the Markdown file only needs the picture's NAME.
+        // WHY: small post files, and one copy of each picture that any post
+        // can reuse.
+        const fileLabel = el('label', { class: 'file-btn' }, [textNode('Choose image to preview')]);
         const fileInput = el('input', { type: 'file', accept: 'image/*' });
         fileInput.addEventListener('change', () => {
           const file = fileInput.files[0];
           if (!file) return;
-          // FileReader converts the picked image into "base64" text — a
-          // way of representing the image's bytes as plain characters.
-          // WHY: embedding the image as text directly in the HTML file
-          // means the finished post is one single file with no separate
-          // image files to upload or lose track of.
+          block.imgFile = file.name; // remember the name for the Markdown file
+          // FileReader turns the picked image into text so the preview can
+          // show it. This is for the PREVIEW ONLY; it is not saved into the
+          // downloaded file.
           const reader = new FileReader();
           reader.onload = () => {
             block.imgSrc = reader.result;
@@ -581,6 +606,18 @@
         if (block.imgSrc) {
           body.appendChild(el('img', { class: 'thumb', src: block.imgSrc }));
         }
+
+        const nameInput = el('input', { type: 'text', placeholder: 'File name in your images folder, e.g. BANs.png' });
+        nameInput.style.marginTop = '0.6rem';
+        nameInput.value = block.imgFile;
+        nameInput.addEventListener('input', () => { block.imgFile = nameInput.value; updatePreview(); });
+        body.appendChild(nameInput);
+
+        const nameHint = el('span', { class: 'hint' }, [
+          textNode('Upload the picture to the images folder on GitHub with exactly this name (capital letters count).')
+        ]);
+        nameHint.style.display = 'block';
+        body.appendChild(nameHint);
 
         const altInput = el('input', { type: 'text', placeholder: 'Alt text (describe the image)' });
         altInput.style.marginTop = '0.6rem';
@@ -667,14 +704,14 @@
   });
 
   // =========================================================================
-  // HTML GENERATION — turns "state" into the actual downloadable web page
+  // PREVIEW HTML - turns "state" into the web page shown in the live preview
   // -------------------------------------------------------------------------
-  // Everything below reads what's currently in state (title, subtitle,
-  // author, date, tags, blocks) and turns it into one finished HTML
-  // document, styled to match itsemily.online's blog template. The exact
-  // same function (buildFullHtml) both feeds the live preview AND
-  // produces the downloaded file — so what you see in the preview is
-  // guaranteed to be exactly what you get on download, byte for byte.
+  // Everything in this section builds the PREVIEW on the right. It reads
+  // what's in state (title, subtitle, author, date, tags, blocks) and draws
+  // a page styled like your blog, so you can see roughly how the post will
+  // look. The downloaded file is different: it is Markdown, built further
+  // down (see "MARKDOWN GENERATION"), and your blog turns it into the final
+  // page. The preview is a close guide, not a byte-for-byte copy.
   // =========================================================================
 
   // Makes text safe to place inside HTML. Someone might type a real "<"
@@ -703,7 +740,10 @@
   // for what actually displays on the page.
   function formatDate(dateStr) {
     const d = dateStr ? new Date(dateStr + 'T00:00:00') : new Date();
-    const iso = d.toISOString().slice(0, 10);
+    // Build yyyy-mm-dd from your LOCAL date parts. (toISOString() uses UTC
+    // time, which can land on the wrong day depending on your time zone.)
+    const pad = (n) => String(n).padStart(2, '0');
+    const iso = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
     const human = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     return { iso, human };
   }
@@ -751,8 +791,9 @@
         // consistently (e.g. rounded corners, max width) from the CSS.
         html += `      <div class="embed-wrap">\n${block.text.trim()}\n      </div>\n`;
       } else if (block.type === 'image') {
-        if (!block.imgSrc) return; // no image chosen yet — skip this block entirely
-        html += `      <figure>\n        <img src="${block.imgSrc}" alt="${escapeHtml(block.imgAlt)}">\n`;
+        const src = previewImageSrc(block);
+        if (!src) return; // no image chosen yet — skip this block entirely
+        html += `      <figure>\n        <img src="${escapeHtml(src)}" alt="${escapeHtml(block.imgAlt)}">\n`;
         if (block.imgCaption.trim()) {
           html += `        <figcaption>${escapeHtml(block.imgCaption.trim())}</figcaption>\n`;
         }
@@ -1051,26 +1092,171 @@ ${buildBodyHtml()}    </article>
   // page) so the person always sees exactly what they'll get.
   function updatePreview() {
     previewFrame.srcdoc = buildFullHtml();
+    updatePublishInfo();
   }
 
   // The Title/Subtitle/Author/Date fields aren't part of state.blocks —
   // they're read straight from the page — so we just need each of them
   // to refresh the preview whenever they change. One loop wires up all
-  // four fields identically instead of writing four almost-identical
-  // addEventListener calls by hand.
-  ['title', 'subtitle', 'author', 'date'].forEach(id => {
+  // of them identically instead of writing a separate
+  // addEventListener call by hand for each.
+  ['title', 'subtitle', 'author', 'date', 'slug', 'excerpt', 'banner'].forEach(id => {
     document.getElementById(id).addEventListener('input', updatePreview);
   });
 
-  // "Download HTML" button: builds the finished page one more time,
-  // wraps it as a downloadable file (a "Blob"), and clicks a hidden
-  // link to trigger the browser's normal save-file dialog — the same
-  // mechanism any "Download" button on the web uses under the hood.
-  document.getElementById('downloadBtn').addEventListener('click', () => {
-    const title = document.getElementById('title').value.trim() || 'post';
+  // =========================================================================
+  // MARKDOWN GENERATION - turns "state" into the file you download
+  // -------------------------------------------------------------------------
+  // WHAT: builds one Markdown (.md) file: a short "front matter" block at
+  // the top (title, date, tags and so on) followed by the post text.
+  // WHY: your blog is built with Jekyll. Jekyll reads every file in the
+  // _posts folder, so a new post is just a new file, with no posts.json to
+  // edit and no commas to get wrong.
+  // =========================================================================
+
+  // Wraps text in quotes in a way the front matter always understands.
+  // JSON.stringify also safely handles quotes and colons in titles.
+  function yamlString(str) { return JSON.stringify(str || ''); }
+
+  // Turns a file name like "BANs.png" into the path your site uses:
+  // "/images/BANs.png". If you typed "images/BANs.png" it still works.
+  function imagePath(name) {
+    const clean = (name || '').trim().replace(/^\/+/, '').replace(/^images\//i, '');
+    return clean ? `/images/${clean}` : '';
+  }
+
+  // Where the PREVIEW should look for a picture: the one you just picked
+  // from your computer, or else the copy already on your live site.
+  function previewImageSrc(block) {
+    if (block.imgSrc) return block.imgSrc;
+    const path = imagePath(block.imgFile);
+    return path ? `https://itsemily.online${path}` : '';
+  }
+
+  // Jekyll treats {{ and {% as special template code. If your post text
+  // contains them, swap in harmless look-alike codes so they show as text.
+  function protectLiquid(text) {
+    return text.replace(/\{\{/g, '&#123;&#123;').replace(/\{%/g, '&#123;%');
+  }
+
+  // Quotes and template symbols can't live inside the image tag's
+  // quotation marks, so tidy them up.
+  function cleanForInclude(text) {
+    return (text || '').replace(/\s+/g, ' ').trim()
+      .replace(/"/g, '”')
+      .replace(/%\}/g, '% }')
+      .replace(/\{\{|\{%/g, '{ ');
+  }
+
+  // Picks a "fence" of backticks for a code block that is always longer
+  // than any run of backticks inside the code, so the code can't escape it.
+  function fenceFor(code) {
+    const runs = code.match(/`+/g) || [];
+    const longest = runs.reduce((m, r) => Math.max(m, r.length), 0);
+    return '`'.repeat(Math.max(3, longest + 1));
+  }
+
+  // Turns ONE block into its Markdown text (or '' if the block is empty).
+  // Same idea as the preview builder: one small function that decides how
+  // to write each block, based on its type.
+  function blockToMarkdown(block) {
+    const text = (block.text || '').trim();
+    if (block.type === 'header') {
+      return text ? `## ${protectLiquid(text.replace(/\s*\n\s*/g, ' '))}` : '';
+    }
+    if (block.type === 'paragraph') {
+      // Several paragraphs typed in one box stay separated by blank lines.
+      return text
+        ? text.split(/\n\s*\n/).map(p => protectLiquid(p.trim())).filter(Boolean).join('\n\n')
+        : '';
+    }
+    if (block.type === 'quote') {
+      // A ">" at the start of every line makes a Markdown quote.
+      return text
+        ? protectLiquid(text).split('\n').map(line => (line.trim() ? `> ${line.trim()}` : '>')).join('\n')
+        : '';
+    }
+    if (block.type === 'code') {
+      if (!text) return '';
+      const code = block.text.replace(/\n+$/, '');
+      const lang = (block.language || '').trim().split(/\s+/)[0] || 'text';
+      const fence = fenceFor(code);
+      const fenced = `${fence}${lang}\n${code}\n${fence}`;
+      // Code that contains {{ or {% would be mistaken for template code,
+      // so it gets wrapped in a "raw" marker that tells Jekyll to leave it alone.
+      return /\{\{|\{%/.test(code) ? `{% raw %}\n${fenced}\n{% endraw %}` : fenced;
+    }
+    if (block.type === 'embed') {
+      // Embed code is meant to run as real HTML, so it goes in as-is.
+      return text ? `<div class="embed-wrap">\n${text}\n</div>` : '';
+    }
+    if (block.type === 'image') {
+      const path = imagePath(block.imgFile);
+      if (!path) return '';
+      const alt = cleanForInclude(block.imgAlt);
+      const caption = cleanForInclude(block.imgCaption);
+      return `{% include figure.html src="${path}"${alt ? ` alt="${alt}"` : ''}${caption ? ` caption="${caption}"` : ''} %}`;
+    }
+    return '';
+  }
+
+  // If no excerpt was typed, use the start of the first paragraph
+  // (cut at a whole word) so the blog list always has a preview line.
+  function autoExcerpt() {
+    const first = state.blocks.find(b => b.type === 'paragraph' && b.text.trim());
+    if (!first) return '';
+    const flat = first.text.replace(/\s+/g, ' ').trim();
+    if (flat.length <= 160) return flat;
+    return flat.slice(0, 160).replace(/\s+\S*$/, '') + '…';
+  }
+
+  // The short link name for the post: what you typed, or the title.
+  function currentSlug() {
+    const typed = document.getElementById('slug').value.trim();
+    const title = document.getElementById('title').value.trim();
+    return slugify(typed || title);
+  }
+
+  // Builds the whole Markdown file: front matter first, then every block
+  // in order, separated by blank lines.
+  function buildMarkdown() {
+    const title = document.getElementById('title').value.trim() || 'Untitled Post';
+    const subtitle = document.getElementById('subtitle').value.trim();
+    const author = document.getElementById('author').value.trim();
+    const excerpt = document.getElementById('excerpt').value.trim() || autoExcerpt();
+    const banner = imagePath(document.getElementById('banner').value);
     const { iso } = formatDate(document.getElementById('date').value);
-    const filename = `${iso}-${slugify(title)}.html`; // e.g. "2026-07-15-why-i-switched-to-static-sites.html"
-    const blob = new Blob([buildFullHtml()], { type: 'text/html' });
+
+    let front = '---\n';
+    front += `title: ${yamlString(title)}\n`;
+    if (subtitle) front += `subtitle: ${yamlString(subtitle)}\n`;
+    front += `date: ${iso}\n`;
+    if (author) front += `author: ${yamlString(author)}\n`;
+    if (state.tags.length) front += `tags: [${state.tags.map(yamlString).join(', ')}]\n`;
+    front += `excerpt: ${yamlString(excerpt)}\n`;
+    if (banner) front += `image: ${banner}\n`;
+    front += '---\n';
+
+    const body = state.blocks.map(blockToMarkdown).filter(Boolean).join('\n\n');
+    return `${front}${body}\n`;
+  }
+
+  // Shows the file name and link the post will get, under the button.
+  function updatePublishInfo() {
+    const { iso } = formatDate(document.getElementById('date').value);
+    const slug = currentSlug();
+    document.getElementById('publishInfo').textContent =
+      `File name: ${iso}-${slug}.md · Link: itsemily.online/blog/${slug}/`;
+  }
+
+  // "Download Markdown" button: builds the file, wraps it as a downloadable
+  // "Blob", and clicks a hidden link so the browser's normal save-file
+  // dialog appears. The file name is the date plus the short link name,
+  // e.g. "2026-11-21-keeping-score.md", which is the format Jekyll expects.
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    const { iso } = formatDate(document.getElementById('date').value);
+    const filename = `${iso}-${currentSlug()}.md`;
+    const blob = new Blob([buildMarkdown()], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -1084,6 +1270,7 @@ ${buildBodyHtml()}    </article>
   // Runs once when the page first loads: adds one empty paragraph block
   // so the editor isn't completely blank, draws the (currently empty)
   // tag list, and renders the first preview.
+  document.getElementById('date').value = formatDate('').iso; // start with today's date
   addBlock('paragraph');
   renderTags();
   updatePreview();

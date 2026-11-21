@@ -64,6 +64,6 @@ When I went to look at the instructions I thought I provided, they weren't there
 
 The outcome? An easy to use blog post builder that allows me to write and then add to my file manager to post to my site.
 
-Check out the file here: blogpostbuilder.html that you can download, modify (or have your LLM modify) for you to use if you're also learning how to build your site.
+Check out the file here: [blogbuilder.html](/blogbuilder.html) that you can download, modify (or have your LLM modify) for you to use if you're also learning how to build your site.
 
 Let me know if it's helpful or if you have questions (this will be a good learning experience for me too)!
